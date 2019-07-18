@@ -1,5 +1,7 @@
 var playing = false;
 var score;
+var trialsLeft;
+var fruits = ['apple','cheery','pineapple','banana'];
 $(function(){
                                                 //click on start reset button
   $("#startReset").click(function(){
@@ -10,11 +12,17 @@ $(function(){
       else{
                                                 //we are not playing
           playing = true;                       //start Game
-          score = 1;                             //set score to 0
+          score = 0;                             //set score to 0
           $("#scoreValue").html(score);
           
           //Show trials left
           $("#trialsLeft").show();
+          trialsLeft = 3;
+          addHearts();
+                                                //Change button to rest text
+          $("#startReset").html("Reset Game");
+                                                //Start sendeing Fruits
+          startAction();
       }
   }); 
 });
@@ -37,4 +45,19 @@ $(function(){
 //Slice fruit
 //PLay sounde
 //explode the fruit
-        
+        function addHearts(){
+              for(var i=0;i< trialsLeft; i++){
+              $("#trialsLeft").append(' <img src="images/heart.jpg" class="life">');
+          }
+        }
+        //Send Fruits
+function startAction(){ 
+ $("#fruit1").show();
+    chooseFruit();
+}
+//choose a random Fruit
+function chooseFruit(){
+    $("#fruit1").attr('src' , 'images/' + fruits[Math.round(3*Math.random())] + '.png');
+    $("#fruit1").css({'left' : Math.round(550*Math.random()),'top': -50});
+    
+}
