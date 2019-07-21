@@ -30,22 +30,17 @@ $(function(){
           startAction();
       }
   }); 
-});
 
-    //are we playing?
-        //yes
-            //reload page
-        //no
-           //Show trials left box 
-        //change button text tp 'reset game
-        //1.create random fruit
-        //define a random step for new fruit
-        //2.move fruit down every 30s
-            //is fruit too low?
-            //no -> repeat number 2
-            //yes?-> Trials left?
-                //yes-> repeat number 1
-                //no? show game over and change start button to start game
+
+    $("#fruit1").mouseover(function(){
+        score++;
+        $("#scoreValue").html(score);
+        //Document.getElementById("#sliceSound").play();
+        $("#sliceSound")[0].play();//play soound
+        //Stop Fruit And hide Fruit
+        stopAction(); 
+        startAction();
+    });
 
 //Slice fruit
 //PLay sounde
@@ -61,13 +56,13 @@ function startAction(){
  $("#fruit1").show();
     chooseFruit();
     $("#fruit1").css({'left' : Math.round(550*Math.random()),'top': -50});
-}
+
 //generte a random speed
-step=1+ Math.round(5*Math.random());//Change step
+step= 1+ Math.round(5*Math.random());//Change step
 //Move the fruit down every 10 ms
 action = setInterval(function(){
-    $("#fruit1").css('top',$('#fruit1').position().top + step);
-    if($('#fruit1').position().top > $('#fruitContainer').height()){
+    $("#fruit1").css('top',$("#fruit1").position().top + step);
+    if($("#fruit1").position().top > $("#fruitContainer").height()){
         //CHeck trials left
         if(trialsLeft > 1 ){
                                 
@@ -76,8 +71,8 @@ action = setInterval(function(){
                         $("#fruit1").css({'left' : Math.round(550*Math.random()),'top': -50});
                     
                     //generte a random speed
-                    step=1+ Math.round(5*Math.random());//Change step
-                    //Move the fruit down every 10 ms
+                    step = 1 + Math.round(5*Math.random());//Change step
+                                                    //Move the fruit down every 10 ms
             //reduce a life
             trialsLeft --;
            //Add hearts
@@ -95,7 +90,7 @@ action = setInterval(function(){
        }
     
 },10);
-
+}
 
 //choose a random Fruit
 function chooseFruit(){
@@ -106,3 +101,4 @@ function chooseFruit(){
         clearInterval(action);
         $("#fruit1").hide();
     }
+    });
