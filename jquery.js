@@ -38,8 +38,10 @@ $(function(){
         //Document.getElementById("#sliceSound").play();
         $("#sliceSound")[0].play();//play soound
         //Stop Fruit And hide Fruit
-        stopAction(); 
-        startAction();
+         clearInterval(action);
+        //hide by animation
+        $("#fruit1").hide("explode", 500);//slice
+        setTimeout(startAction,800);// Send new fruit
     });
 
 //Slice fruit
